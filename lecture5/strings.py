@@ -2,27 +2,33 @@
 ## Printing, formatting
 name = input("Your name?\n> ")
 uni = input("Your university?\n> ")
-print(name, "@", uni, ".se", sep="^_^")
-
+print(name, "@", uni, ".se", sep="")
+print("---------------")
 for _ in range(5):
     print("test", end="^_^")
 
 ## Unicode: code points
-print(ord('A'))
+print()
+print("---------------")
+
+print("A has the code point", ord("A"))
 
 
 ## String operations:
 # concat
+print("---------------")
 name = "inari"
 uni = "chalmers"
 email = name + "@" + uni + ".se"
 print(email)
 
 # repeat
+print("---------------")
 example = 3 * uni
 print(example)
 
 # index
+print("---------------")
 a = uni[2]
 print(a)
 
@@ -49,16 +55,19 @@ print(chal, mers)
 
 
 # length & iteration
-print(len(uni))
-
+print("---------------")
+print("Length of", uni, "is", len(uni))
+# Same as:
+# print(f"Length of {uni} is {len(uni)})
+print("---------------")
 # index loop: loop over indices
 for i in range( len(uni) ):
-    print(i, uni[i])
-
+    print(uni[i], "is in index", i)
+print("---------------")
 # foreach: loop over elements
 for c in uni:
-    print(c, "code point:", ord(c))
-
+    print(c, "has the code point", ord(c))
+print("---------------")
 # membership
 print('s' in uni)
 print('cha' in uni)
@@ -68,3 +77,10 @@ print('c h a' in uni)
 
 
 ## String methods
+
+sentence = "Python is nice!"
+for c in sentence:
+    if c.isalpha():
+        print(c, end='')
+
+print()
