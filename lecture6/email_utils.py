@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 
 def send_email(subject, msg_raw, recipient):
     # Gmail credentials
-    sender = "inari.listenmaa@gmail.com"
+    sender = "your_gmail_address@gmail.com"
     password = "DON'T PUBLISH ACTUAL PASSWORDS ON THE INTERNET AS PLAINTEXT"
     # If you want your own: create one in https://myaccount.google.com/apppasswords
     # and please don't post it in the public internet 🙈
