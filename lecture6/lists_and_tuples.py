@@ -8,4 +8,11 @@ pia = ("Pia", "pp@pp.pp", "Partille")
 inari = ("Inari", "inari@chalmers.se", "Göteborg")
 
 # Loop over the people, send email to people who live in Göteborg
-### To be done in class!
+people = [ulrika, markus, karl, pia, inari]
+
+for person in people:
+    name, email_address, city = person
+    if city == "Göteborg":
+        subject = f"Exciting opportunities in {city}"
+        msg = f"Hello {name}! This is legit not spam."
+        send_email(subject, msg, email_address)
