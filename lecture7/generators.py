@@ -33,9 +33,24 @@ def primes():
 ## The full list of TA names is on Canvas,
 ## the file in this repo is just pretend names
 with open("TAs.txt") as file:
-  lines = file.readlines()
-  tas_by_len = sorted(lines, key=len)
-  tas_by_3rd_letter = sorted(lines, key=lambda x:x[2])
+  tas = file.readlines()
+
+  ### Alternative to writing sorted(tas, key=len)
+  line_lengths = []
+  for line in tas:
+    line_lengths.append(len(line))
+
+  for l, ta in sorted(zip(line_lengths, tas)):
+      print(ta) # whitespace not stripped
+
+  print("-----")
+  for ta, len in sorted(zip(tas, line_lengths)):
+      print(ta.strip()) #whitespace stripped!
+
+  print("-----")
+  #### Using key argument—more compact
+  tas_by_len = sorted(tas, key=len)
+  tas_by_3rd_letter = sorted(tas, key=lambda x:x[2])
   print(tas_by_len)
   print(tas_by_3rd_letter)
 
@@ -60,11 +75,11 @@ discount25 = ['u', 'st', 'f']
 status = input("Välj: [b]arn, [u]ngdom, [st]udent, [v]uxen, [f]örmånstagare, [se]nior? ")
 status = status.lower()
 if any(status.startswith(x) for x in discount100):
-   price = 0
+  price = 0
 elif any(status.startswith(x) for x in discount25):
-   price = 28
+  price = 28
 else:
-   price = 37
+  price = 37
 
 print(f"The price is {price}")
 
