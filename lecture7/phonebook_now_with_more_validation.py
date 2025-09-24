@@ -40,7 +40,6 @@ if __name__=='__main__':
   phonebook['Vaktmästare'] = ['0317728800']
   print(phonebook)
 
-  # TODO: Make it loop, end with KeyboardInterrupt
   try:
     while True:
       update(phonebook)
@@ -59,4 +58,3 @@ if __name__=='__main__':
       file.write(f"{name}: {numbers_pretty}\n")
 
   print(f"Done! Saved in {fname}")
-
