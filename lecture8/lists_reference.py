@@ -3,7 +3,7 @@ from tournament import print_matrix
 ##### How lists work
 
 n = 3 # change to whatever
-debug = True # Change to False if you don't want printouts
+verbose = True # Change to True if you want printouts of the more trivial examples
 
 # Accumulator loop
 T1 = []
@@ -12,7 +12,7 @@ for _ in range(n):
   # At every iteration of the for-loop,
   # a new list is constructed and placed into T1.
   # All these lists have different reference.
-if debug:
+if verbose:
     print("T1, built with accumulator loop")
     T1[0][0] = 99
     print_matrix(T1)
@@ -23,7 +23,7 @@ T2 = [[0] * n for _ in range(n)]
 # Just like for-loop but more compact.
 # [0] * n is executed again every iteration
 # of the `for _ in range(n)`.
-if debug:
+if verbose:
     print("T2, built with list comprehension")
     T2[0][0] = 99
     print_matrix(T2)
@@ -31,27 +31,61 @@ if debug:
 
 # Multiplication of the same value
 T3 = [[0] * n] * n
-if debug:
-    print("T3, built by multiplying")
-    T3[0][0] = 99   # The rows are all the same, this will change also T3[1][0] and T3[2][0]
-    print_matrix(T3)
-    #### Result:
-    # 99   0    0
-    # 99   0    0
-    # 99   0    0
+# The same as if we had done this:
+t4 = [0] * n  # 0 is a different reference every time
+T4 = [t4] * n # t4 is the same reference every time (like the list literal was in T3)
 
-    print("---------------")
-    T3[1][1] = 88 # Will also change 0,1 and 2,1
-    print_matrix(T3)
-    #### Result:
-    # 99   88   0
-    # 99   88   0
-    # 99   88   0
+print("T4 before modifications")
+print_matrix(T4)
+print("---------------")
+T4[0][0] = 10
+t4[1]    = 20
+print("T4 after modifications")
+print_matrix(T4)
+print("---------------")
 
-    print("---------------")
-    T3[2][2] = 77  # Will also change 0,2 and 1,2
-    print_matrix(T3)
-    #### Result:
-    # 99   88   77
-    # 99   88   77
-    # 99   88   77
+## Can we force the internal things to be same?
+num = 0
+t5 = [num] * n
+T5 = [t5] * n
+
+print("T5 before modifications")
+print(f"num = {num}")
+print_matrix(T5)
+print("---------------")
+
+T5[0][0] = 10
+print("T5 after modifications")
+print_matrix(T5)
+print("---------------")
+
+num = 99 # There's a num in every cell—does this change them all?
+print("T5 after num = 99: no change!")
+print_matrix(T5)
+# No—it didn't change anything! 🤯
+# 10   0    0
+# 10   0    0
+# 10   0    0
+print(f"num = {num}")
+print("Looks like what was stored in the list was a /value/, not /reference/")
+
+print("---------------")
+
+#### Final round: what if we have a mutable variable in the inner list?
+
+## Can we force the internal things to be same?
+mutable_variable = {} # let's make this dict to distinguish from lists
+t6 = [mutable_variable] * n
+T6 = [t6] * n
+
+print("T6 before modifications")
+print_matrix(T6)
+print("---------------")
+print("T6 after T6[0][0] = 10")
+T6[0][0] = 10
+print_matrix(T6)
+
+print("---------------")
+mutable_variable["a"] = "b" # There's a num in every cell—does this change them all?
+print("After changing mutable_variable")
+print_matrix(T6)
