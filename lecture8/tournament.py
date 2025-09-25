@@ -10,14 +10,18 @@ def tournament(n, filename):
   for _ in range(n):
     T.append([0] * n)
 
-   ## Alternative syntaxes to create matrix:
-   # T = [[0] * n for _ in range(n)]
-   # T = [[0] * n] * n
+  ## Alternative syntaxes to create matrix:
+  # T = [[0] * n for _ in range(n)]
+  # T = [[0] * n] * n ————– Dangerous! see more in lists_reference.py
 
 
   with open(filename, "r") as f:
     for line in f:
-      t1, t2, t1_score, t2_score = line.split()
+      t1, t2, t1_score, t2_score = line.split() # Unpacking
+      ## Same as doing this:
+      ## t1 = line.split()[0]
+      ## t2 = line.split()[1]
+      ## …
       t1 = int(t1) - 1
       t2 = int(t2) - 1
       t1_score = int(t1_score)
