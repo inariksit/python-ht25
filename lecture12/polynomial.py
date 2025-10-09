@@ -10,18 +10,29 @@ needle = 13
 #####################################################################
 
 def search(needle, haystack):
-  # return index of needle if found
-  # return -1 if not found
-  pass
+  for i in range(len(haystack)):
+    straw = haystack[i]
+    if straw == needle:
+      return i
+
+  return -1
+
 
 #########################################################################
 ## Is there a pair of values in haystack whose sum is equal to needle? ##
 #########################################################################
 
 def pair_sum(needle, haystack):
+  for i in range(len(haystack)):
+    for j in range(len(haystack)):
+      if i != j:
+        if haystack[i] + haystack[j] == needle:
+          return (i,j)
+
+  return (-1, -1)
   # return indices of straws if found
   # return (-1,-1) if not found
-  pass
+
 
 
 ###########################################################################
@@ -29,7 +40,12 @@ def pair_sum(needle, haystack):
 ###########################################################################
 
 def triple_sum(needle, haystack):
-  # return indices of straws if found
-  # return (-1,-1,-1) if not found
-  pass
+  for i in range(len(haystack)):
+    for j in range(len(haystack)):
+      for k in range(len(haystack)):
+        if i != j and j != k and i != k:
+          if haystack[i] + haystack[j] + haystack[k] == needle:
+            return (i,j,k)
+
+  return (-1, -1, -1)
 
